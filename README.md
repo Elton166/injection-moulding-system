@@ -74,6 +74,8 @@ git clone https://github.com/Elton166/injection-moulding-system.git
 cd injection-moulding-system
 ```
 
+Or download the ZIP file from the repository.
+
 2. **Create virtual environment**
 ```bash
 python -m venv venv
