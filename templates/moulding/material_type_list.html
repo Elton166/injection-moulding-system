@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}Material Types{% endblock %}
+
+{% block content %}
+<h2>📦 Material Types</h2>
+
+<div style="margin: 20px 0;">
+    <a href="{% url 'material_type_create' %}" class="btn btn-success">➕ Add New Material</a>
+    <a href="{% url 'material_dashboard' %}" class="btn">← Back to Dashboard</a>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 30px 0;">
+    <div class="card" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: white;">
+        <h3 style="color: white;">✨ Virgin</h3>
+        <p style="font-size: 48px; font-weight: 700;">{{ virgin.count }}</p>
+    </div>
+    
+    <div class="card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white;">
+        <h3 style="color: white;">♻️ Regrind</h3>
+        <p style="font-size: 48px; font-weight: 700;">{{ regrind.count }}</p>
+    </div>
+    
+    <div class="card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+        <h3 style="color: white;">🔀 Mixed</h3>
+        <p style="font-size: 48px; font-weight: 700;">{{ mixed.count }}</p>
+    </div>
+</div>
+
+<h3 style="margin-top: 40px;">📋 All Materials</h3>
+{% if materials %}
+<table>
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Grade</th>
+            <th>Stock (kg)</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for material in materials %}
+        <tr>
+            <td><strong>{{ material.code }}</strong></td>
+            <td>{{ material.name }}</td>
+            <td>
+                {% if material.category == 'virgin' %}✨ Virgin
+                {% elif material.category == 'regrind' %}♻️ Regrind
+                {% else %}🔀 Mixed{% endif %}
+            </td>
+            <td>{{ material.material_grade }}</td>
+            <td>{{ material.current_stock }} / {{ material.minimum_stock }}</td>
+            <td>
+                {% if material.stock_status == 'low' %}
+                <span class="badge badge-danger">LOW</span>
+                {% elif material.stock_status == 'medium' %}
+                <span class="badge badge-warning">MEDIUM</span>
+                {% else %}
+                <span class="badge badge-success">GOOD</span>
+                {% endif %}
+            </td>
+            <td>
+                <a href="{% url 'material_type_detail' material.pk %}" class="btn" style="padding: 5px 10px; font-size: 12px;">View</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div class="card" style="text-align: center; padding: 40px;">
+    <div style="font-size: 64px; margin-bottom: 15px;">📦</div>
+    <p style="color: #999;">No materials added yet</p>
+    <a href="{% url 'material_type_create' %}" class="btn btn-success">Add First Material</a>
+</div>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Material Recipes{% endblock %}
+{% block content %}
+<h2>📋 Material Recipes</h2>
+<div style="margin:20px 0;">
+    <a href="{% url 'material_recipe_create' %}" class="btn btn-success">➕ Create Recipe</a>
+    <a href="{% url 'material_dashboard' %}" class="btn">← Back</a>
+</div>
+{% if recipes %}
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:20px;margin:20px 0;">
+    {% for recipe in recipes %}
+    <div class="card" style="border-left:5px solid #667eea;">
+        <h4 style="color:#667eea;">{{ recipe.recipe_code }}</h4>
+        <p><strong>{{ recipe.name }}</strong></p>
+        <p>Product: {{ recipe.product_name }}</p>
+        <div style="background:rgba(102,126,234,0.1);padding:10px;border-radius:8px;margin:10px 0;">
+            <p style="margin:3px 0;">Base: {{ recipe.base_material.code }} ({{ recipe.base_percentage }}%)</p>
+            {% if recipe.masterbatch %}<p style="margin:3px 0;">MB: {{ recipe.masterbatch.code }} ({{ recipe.masterbatch_percentage }}%)</p>{% endif %}
+            {% if recipe.regrind_material %}<p style="margin:3px 0;">Regrind: {{ recipe.regrind_material.code }} ({{ recipe.regrind_percentage }}%)</p>{% endif %}
+        </div>
+        <a href="{% url 'material_recipe_detail' recipe.pk %}" class="btn" style="width:100%;text-align:center;">View Details</a>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="card" style="text-align:center;padding:40px;"><p>No recipes yet</p></div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Injection Moulding App Icon Generator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #1a1a2e;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        h1 {
+            color: white;
+            text-align: center;
+        }
+        .icon-container {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .icon-wrapper {
+            text-align: center;
+        }
+        .icon-wrapper p {
+            color: white;
+            margin-top: 10px;
+        }
+        canvas {
+            border: 2px solid #667eea;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
+        }
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 5px;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            transition: transform 0.2s;
+        }
+        button:hover {
+            transform: translateY(-2px);
+        }
+        .instructions {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            color: white;
+            max-width: 600px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🏭 Unique Injection Moulding App Icons</h1>
+    
+    <div class="icon-container">
+        <div class="icon-wrapper">
+            <canvas id="icon192" width="192" height="192"></canvas>
+            <p>192x192 Icon</p>
+            <button onclick="downloadIcon('icon192', 'icon-192.png')">Download 192x192</button>
+        </div>
+        
+        <div class="icon-wrapper">
+            <canvas id="icon512" width="512" height="512"></canvas>
+            <p>512x512 Icon</p>
+            <button onclick="downloadIcon('icon512', 'icon-512.png')">Download 512x512</button>
+        </div>
+    </div>
+    
+    <div class="instructions">
+        <h3>📥 How to Use:</h3>
+        <ol>
+            <li>Click the download buttons above</li>
+            <li>Save the files as <code>icon-192.png</code> and <code>icon-512.png</code></li>
+            <li>Place them in your <code>static/</code> folder</li>
+            <li>Restart your Django server</li>
+            <li>Your app now has unique icons!</li>
+        </ol>
+    </div>
+
+    <script>
+        function drawIcon(canvasId) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            const size = canvas.width;
+            const center = size / 2;
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, size, size);
+            
+            // Create gradient background
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#667eea');
+            gradient.addColorStop(0.5, '#764ba2');
+            gradient.addColorStop(1, '#f093fb');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, size, size);
+            
+            // Add geometric pattern overlay
+            ctx.globalAlpha = 0.1;
+            for (let i = 0; i < 5; i++) {
+                ctx.beginPath();
+                ctx.arc(center, center, size * (0.2 + i * 0.15), 0, Math.PI * 2);
+                ctx.strokeStyle = 'white';
+                ctx.lineWidth = size * 0.01;
+                ctx.stroke();
+            }
+            ctx.globalAlpha = 1;
+            
+            // Draw injection moulding machine silhouette
+            const scale = size / 512;
+            
+            // Machine base
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
+            ctx.fillRect(center - 120 * scale, center + 60 * scale, 240 * scale, 40 * scale);
+            
+            // Injection unit (left side)
+            ctx.fillRect(center - 140 * scale, center - 20 * scale, 100 * scale, 80 * scale);
+            
+            // Barrel/Screw
+            ctx.fillRect(center - 40 * scale, center + 10 * scale, 80 * scale, 20 * scale);
+            
+            // Clamping unit (right side)
+            ctx.fillRect(center + 40 * scale, center - 40 * scale, 100 * scale, 100 * scale);
+            
+            // Mould cavity (center)
+            ctx.fillStyle = 'rgba(255, 193, 7, 0.9)';
+            ctx.fillRect(center - 20 * scale, center - 10 * scale, 40 * scale, 40 * scale);
+            
+            // Add glow effect
+            ctx.shadowColor = 'rgba(255, 193, 7, 0.8)';
+            ctx.shadowBlur = 20 * scale;
+            ctx.fillRect(center - 20 * scale, center - 10 * scale, 40 * scale, 40 * scale);
+            ctx.shadowBlur = 0;
+            
+            // Add "IM" text
+            ctx.fillStyle = 'white';
+            ctx.font = `bold ${80 * scale}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+            ctx.shadowBlur = 10 * scale;
+            ctx.fillText('IM', center, center - 100 * scale);
+            ctx.shadowBlur = 0;
+            
+            // Add decorative elements
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+            ctx.lineWidth = 3 * scale;
+            
+            // Corner brackets
+            const bracketSize = 30 * scale;
+            const margin = 20 * scale;
+            
+            // Top-left
+            ctx.beginPath();
+            ctx.moveTo(margin + bracketSize, margin);
+            ctx.lineTo(margin, margin);
+            ctx.lineTo(margin, margin + bracketSize);
+            ctx.stroke();
+            
+            // Top-right
+            ctx.beginPath();
+            ctx.moveTo(size - margin - bracketSize, margin);
+            ctx.lineTo(size - margin, margin);
+            ctx.lineTo(size - margin, margin + bracketSize);
+            ctx.stroke();
+            
+            // Bottom-left
+            ctx.beginPath();
+            ctx.moveTo(margin, size - margin - bracketSize);
+            ctx.lineTo(margin, size - margin);
+            ctx.lineTo(margin + bracketSize, size - margin);
+            ctx.stroke();
+            
+            // Bottom-right
+            ctx.beginPath();
+            ctx.moveTo(size - margin - bracketSize, size - margin);
+            ctx.lineTo(size - margin, size - margin);
+            ctx.lineTo(size - margin, size - margin - bracketSize);
+            ctx.stroke();
+            
+            // Add small dots for tech feel
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+            const dotPositions = [
+                [center - 150 * scale, center - 120 * scale],
+                [center + 150 * scale, center - 120 * scale],
+                [center - 150 * scale, center + 120 * scale],
+                [center + 150 * scale, center + 120 * scale]
+            ];
+            
+            dotPositions.forEach(([x, y]) => {
+                ctx.beginPath();
+                ctx.arc(x, y, 4 * scale, 0, Math.PI * 2);
+                ctx.fill();
+            });
+        }
+        
+        function downloadIcon(canvasId, filename) {
+            const canvas = document.getElementById(canvasId);
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+        
+        // Draw both icons on page load
+        window.onload = function() {
+            drawIcon('icon192');
+            drawIcon('icon512');
+        };
+    </script>
+</body>
+</html>

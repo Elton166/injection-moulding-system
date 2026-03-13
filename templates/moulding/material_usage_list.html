@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Material Usage{% endblock %}
+{% block content %}
+<h2>📊 Material Usage Records</h2>
+<div style="margin:20px 0;">
+    <a href="{% url 'material_usage_create' %}" class="btn btn-success">➕ Record Usage</a>
+    <a href="{% url 'material_dashboard' %}" class="btn">← Back</a>
+</div>
+{% if usages %}
+<table>
+    <thead><tr><th>Usage #</th><th>Product</th><th>Material</th><th>Masterbatch</th><th>Total (kg)</th><th>Parts</th><th>Date</th><th>Actions</th></tr></thead>
+    <tbody>
+        {% for usage in usages %}
+        <tr>
+            <td><strong>{{ usage.usage_number }}</strong></td>
+            <td>{{ usage.product_name }}</td>
+            <td>{{ usage.material_type.code }}</td>
+            <td>{% if usage.masterbatch %}{{ usage.masterbatch.code }}{% else %}-{% endif %}</td>
+            <td>{{ usage.total_material_used }}</td>
+            <td>{{ usage.good_parts }}/{{ usage.parts_produced }}</td>
+            <td>{{ usage.production_date|date:"Y-m-d" }}</td>
+            <td><a href="{% url 'material_usage_detail' usage.pk %}" class="btn" style="padding:5px 10px;font-size:12px;">View</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div class="card" style="text-align:center;padding:40px;"><p>No usage records yet</p></div>
+{% endif %}
+{% endblock %}

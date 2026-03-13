@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}Production Summary - {{ order.order_number }}{% endblock %}
+
+{% block content %}
+<h2>📊 Production Summary</h2>
+
+<div style="margin: 20px 0;">
+    <a href="{% url 'production_order_detail' order.pk %}" class="btn">← Back to Order</a>
+    <a href="{% url 'shift_production_create' %}?order={{ order.pk }}" class="btn btn-success">➕ Record Shift Production</a>
+</div>
+
+<div class="card">
+    <h3>Order: {{ order.order_number }} - {{ order.product_name }}</h3>
+    <p><strong>Customer:</strong> {{ order.customer_name }}</p>
+    <p><strong>Quantity Ordered:</strong> {{ order.quantity_ordered }} {{ order.unit }}</p>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 30px 0;">
+    <div class="card" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: white; text-align: center;">
+        <h3 style="color: white;">✅ Total Produced</h3>
+        <p style="font-size: 48px; font-weight: 700;">{{ total_produced }}</p>
+    </div>
+    <div class="card" style="background: linear-gradient(135deg, #dc3545 0%, #f45c43 100%); color: white; text-align: center;">
+        <h3 style="color: white;">❌ Total Rejected</h3>
+        <p style="font-size: 48px; font-weight: 700;">{{ total_rejected }}</p>
+    </div>
+    <div class="card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; text-align: center;">
+        <h3 style="color: white;">⏳ Pending Approval</h3>
+        <p style="font-size: 48px; font-weight: 700;">{{ pending_approval }}</p>
+    </div>
+</div>
+
+<h3>Shift-by-Shift Breakdown</h3>
+{% if shift_productions %}
+<table>
+    <thead>
+        <tr>
+            <th>Production #</th>
+            <th>Shift</th>
+            <th>Date</th>
+            <th>Good Parts</th>
+            <th>Rejected</th>
+            <th>Scrap %</th>
+            <th>Rate</th>
+            <th>Operator</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for prod in shift_productions %}
+        <tr>
+            <td><strong>{{ prod.production_number }}</strong></td>
+            <td>{{ prod.get_shift_display }}</td>
+            <td>{{ prod.shift_date|date:"Y-m-d" }}</td>
+            <td style="color: #28a745; font-weight: 600;">{{ prod.quantity_produced }}</td>
+            <td style="color: #dc3545;">{{ prod.quantity_rejected }}</td>
+            <td>{{ prod.scrap_rate|floatformat:1 }}%</td>
+            <td>{{ prod.production_rate|floatformat:0 }} pcs/hr</td>
+            <td>{{ prod.operator.username }}</td>
+            <td>
+                {% if prod.approved %}
+                <span class="badge badge-success">✅ Approved</span>
+                {% else %}
+                <span class="badge badge-warning">⏳ Pending</span>
+                {% endif %}
+            </td>
+            <td>
+                <a href="{% url 'shift_production_detail' prod.pk %}" class="btn" style="padding: 5px 10px; font-size: 12px;">View</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div class="card" style="text-align: center; padding: 40px;">
+    <div style="font-size: 64px; margin-bottom: 15px;">📊</div>
+    <p style="color: #999; margin-bottom: 20px;">No shift production recorded yet</p>
+    <a href="{% url 'shift_production_create' %}?order={{ order.pk }}" class="btn btn-success">Record First Shift</a>
+</div>
+{% endif %}
+
+{% endblock %}

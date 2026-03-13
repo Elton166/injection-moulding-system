@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}{{ usage.usage_number }}{% endblock %}
+{% block content %}
+<h2>📊 {{ usage.usage_number }}</h2>
+<div style="margin:20px 0;"><a href="{% url 'material_usage_list' %}" class="btn">← Back</a></div>
+<div class="card">
+    <h3>Usage Details</h3>
+    <p><strong>Product:</strong> {{ usage.product_name }}</p>
+    <p><strong>Material:</strong> {{ usage.material_type.code }} - {{ usage.material_quantity }} kg</p>
+    {% if usage.masterbatch %}<p><strong>Masterbatch:</strong> {{ usage.masterbatch.code }} - {{ usage.masterbatch_quantity }} kg ({{ usage.masterbatch_percentage }}%)</p>{% endif %}
+    <p><strong>Total Material:</strong> {{ usage.total_material_used }} kg</p>
+    <p><strong>Parts Produced:</strong> {{ usage.good_parts }}/{{ usage.parts_produced }}</p>
+    <p><strong>Scrap Rate:</strong> {{ usage.scrap_rate|floatformat:2 }}%</p>
+    <p><strong>Date:</strong> {{ usage.production_date|date:"Y-m-d" }}</p>
+</div>
+{% endblock %}

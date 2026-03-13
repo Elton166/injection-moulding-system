@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% block title %}Record Shift Production{% endblock %}
+
+{% block content %}
+<h2>📊 Record Shift Production</h2>
+
+<div class="card">
+    <h3>Enter Production Data</h3>
+    <form method="post">
+        {% csrf_token %}
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div>
+                <h4 style="color: #667eea; margin-bottom: 15px;">Order & Shift Details</h4>
+                <div style="margin-bottom: 15px;">
+                    <label>Production Order:</label>
+                    {{ form.production_order }}
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label>Shift:</label>
+                    {{ form.shift }}
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label>Shift Date:</label>
+                    {{ form.shift_date }}
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label>Start Time:</label>
+                    {{ form.start_time }}
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label>End Time:</label>
+                    {{ form.end_time }}
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label>Machine Number:</label>
+                    {{ form.machine_number }}
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label>Supervisor:</label>
+                    {{ form.supervisor }}
+                </div>
+            </div>
+            
+            <div>
+                <h4 style="color: #667eea; margin-bottom: 15px;">Production Quantities</h4>
+                <div style="margin-bottom: 15px;">
+                    <label>✅ Good Parts Produced:</label>
+                    {{ form.quantity_produced }}
+                    <small style="color: #666; display: block; margin-top: 5px;">{{ form.fields.quantity_produced.help_text }}</small>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label>❌ Rejected Parts:</label>
+                    {{ form.quantity_rejected }}
+                    <small style="color: #666; display: block; margin-top: 5px;">{{ form.fields.quantity_rejected.help_text }}</small>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label>⏱️ Downtime (minutes):</label>
+                    {{ form.downtime_minutes }}
+                    <small style="color: #666; display: block; margin-top: 5px;">{{ form.fields.downtime_minutes.help_text }}</small>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label>Downtime Reason:</label>
+                    {{ form.downtime_reason }}
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label>📦 Material Used (kg):</label>
+                    {{ form.material_used }}
+                    <small style="color: #666; display: block; margin-top: 5px;">{{ form.fields.material_used.help_text }}</small>
+                </div>
+            </div>
+        </div>
+        
+        <div style="margin-top: 20px;">
+            <h4 style="color: #667eea; margin-bottom: 15px;">Notes & Issues</h4>
+            <div style="margin-bottom: 15px;">
+                <label>📝 Shift Notes:</label>
+                {{ form.notes }}
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label>⚠️ Quality Issues:</label>
+                {{ form.quality_issues }}
+            </div>
+        </div>
+        
+        <div style="display: flex; gap: 10px; margin-top: 30px;">
+            <button type="submit" class="btn btn-success" style="flex: 1;">💾 Save Shift Production</button>
+            <a href="{% url 'shift_production_list' %}" class="btn" style="flex: 1; text-align: center;">Cancel</a>
+        </div>
+    </form>
+</div>
+
+<style>
+    input, select, textarea {
+        width: 100%;
+        padding: 10px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 14px;
+        transition: border-color 0.3s;
+    }
+    
+    input:focus, select:focus, textarea:focus {
+        outline: none;
+        border-color: #667eea;
+    }
+    
+    label {
+        font-weight: 600;
+        display: block;
+        margin-bottom: 5px;
+        color: #333;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block title %}Material Management Dashboard{% endblock %}
+
+{% block content %}
+<h2>🎨 Material Management Dashboard</h2>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 30px 0;">
+    <div class="card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: -20px; right: -20px; font-size: 100px; opacity: 0.2;">📦</div>
+        <h3 style="color: white; position: relative; z-index: 1;">Total Materials</h3>
+        <p style="font-size: 48px; font-weight: 700; position: relative; z-index: 1; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">{{ total_materials }}</p>
+        <p style="position: relative; z-index: 1; font-size: 14px;">Virgin: {{ virgin_materials }} | Regrind: {{ regrind_materials }}</p>
+        <a href="{% url 'material_type_create' %}" style="position: relative; z-index: 1; color: white; text-decoration: underline; font-size: 14px; margin-top: 10px; display: inline-block;">➕ Add Material</a>
+    </div>
+    
+    <div class="card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: -20px; right: -20px; font-size: 100px; opacity: 0.2;">🎨</div>
+        <h3 style="color: white; position: relative; z-index: 1;">Masterbatches</h3>
+        <p style="font-size: 48px; font-weight: 700; position: relative; z-index: 1; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">{{ total_masterbatches }}</p>
+        <a href="{% url 'masterbatch_create' %}" style="position: relative; z-index: 1; color: white; text-decoration: underline; font-size: 14px; margin-top: 10px; display: inline-block;">➕ Add Masterbatch</a>
+    </div>
+    
+    <div class="card" style="background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%); color: white; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: -20px; right: -20px; font-size: 100px; opacity: 0.2;">⚠️</div>
+        <h3 style="color: white; position: relative; z-index: 1;">Low Stock</h3>
+        <p style="font-size: 48px; font-weight: 700; position: relative; z-index: 1; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">{{ low_stock_materials.count|add:low_stock_masterbatches.count }}</p>
+        <p style="position: relative; z-index: 1; font-size: 14px;">Materials: {{ low_stock_materials.count }} | MB: {{ low_stock_masterbatches.count }}</p>
+    </div>
+</div>
+
+<h3 style="margin-top: 40px;">⚡ Quick Actions</h3>
+<div style="margin: 20px 0; display: flex; gap: 15px; flex-wrap: wrap;">
+    <a href="{% url 'material_type_list' %}" class="btn" style="flex: 1; min-width: 200px; text-align: center;">
+        📦 View Materials
+    </a>
+    <a href="{% url 'masterbatch_list' %}" class="btn" style="flex: 1; min-width: 200px; text-align: center;">
+        🎨 View Masterbatches
+    </a>
+    <a href="{% url 'material_usage_create' %}" class="btn btn-success" style="flex: 1; min-width: 200px; text-align: center;">
+        📝 Record Usage
+    </a>
+    <a href="{% url 'material_recipe_list' %}" class="btn btn-warning" style="flex: 1; min-width: 200px; text-align: center;">
+        📋 View Recipes
+    </a>
+</div>
+
+{% if low_stock_materials or low_stock_masterbatches %}
+<h3 style="margin-top: 40px;">⚠️ Low Stock Alerts</h3>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; margin: 20px 0;">
+    {% for material in low_stock_materials %}
+    <div class="card" style="border-left: 5px solid #eb3349;">
+        <h4 style="color: #eb3349;">📦 {{ material.code }}</h4>
+        <p><strong>{{ material.name }}</strong></p>
+        <p>Current Stock: <strong>{{ material.current_stock }} kg</strong></p>
+        <p>Minimum: {{ material.minimum_stock }} kg</p>
+        <span class="badge badge-danger">LOW STOCK</span>
+    </div>
+    {% endfor %}
+    
+    {% for mb in low_stock_masterbatches %}
+    <div class="card" style="border-left: 5px solid #f093fb;">
+        <h4 style="color: #f093fb;">🎨 {{ mb.code }}</h4>
+        <p><strong>{{ mb.name }}</strong></p>
+        <p>Current Stock: <strong>{{ mb.current_stock }} kg</strong></p>
+        <p>Minimum: {{ mb.minimum_stock }} kg</p>
+        <span class="badge badge-danger">LOW STOCK</span>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<h3 style="margin-top: 40px;">📊 Recent Material Usage</h3>
+{% if recent_usages %}
+<table>
+    <thead>
+        <tr>
+            <th>Usage #</th>
+            <th>Product</th>
+            <th>Material</th>
+            <th>Masterbatch</th>
+            <th>Quantity</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for usage in recent_usages %}
+        <tr>
+            <td><a href="{% url 'material_usage_detail' usage.pk %}">{{ usage.usage_number }}</a></td>
+            <td>{{ usage.product_name }}</td>
+            <td>{{ usage.material_type.code }}</td>
+            <td>{% if usage.masterbatch %}{{ usage.masterbatch.code }}{% else %}-{% endif %}</td>
+            <td>{{ usage.total_material_used }} kg</td>
+            <td>{{ usage.production_date|date:"Y-m-d" }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div style="text-align: center; margin: 20px 0;">
+    <a href="{% url 'material_usage_list' %}" class="btn">View All Usage Records →</a>
+</div>
+{% else %}
+<div class="card" style="text-align: center; padding: 40px;">
+    <div style="font-size: 64px; margin-bottom: 15px;">📝</div>
+    <p style="color: #999;">No material usage recorded yet</p>
+</div>
+{% endif %}
+
+{% endblock %}

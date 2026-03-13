@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}{{ material.code }}{% endblock %}
+{% block content %}
+<h2>📦 {{ material.code }} - {{ material.name }}</h2>
+<div style="margin:20px 0;"><a href="{% url 'material_type_list' %}" class="btn">← Back</a></div>
+<div class="card">
+    <h3>Material Details</h3>
+    <p><strong>Category:</strong> {{ material.get_category_display }}</p>
+    <p><strong>Grade:</strong> {{ material.material_grade }}</p>
+    <p><strong>Supplier:</strong> {{ material.supplier }}</p>
+    <p><strong>Current Stock:</strong> {{ material.current_stock }} kg</p>
+    <p><strong>Minimum Stock:</strong> {{ material.minimum_stock }} kg</p>
+    <p><strong>Unit Price:</strong> ${{ material.unit_price }}</p>
+    {% if material.notes %}<p><strong>Notes:</strong> {{ material.notes }}</p>{% endif %}
+</div>
+{% endblock %}

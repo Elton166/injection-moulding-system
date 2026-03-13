@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Approve Shift Production{% endblock %}
+
+{% block content %}
+<h2>✅ Approve Shift Production</h2>
+
+<div class="card" style="max-width: 600px; margin: 30px auto;">
+    <h3>Confirm Approval</h3>
+    <p>Are you sure you want to approve this shift production?</p>
+    
+    <div style="background: rgba(102, 126, 234, 0.1); padding: 15px; border-radius: 10px; margin: 20px 0;">
+        <p><strong>Production #:</strong> {{ production.production_number }}</p>
+        <p><strong>Order:</strong> {{ production.production_order.order_number }}</p>
+        <p><strong>Shift:</strong> {{ production.get_shift_display }} - {{ production.shift_date|date:"Y-m-d" }}</p>
+        <p><strong>Good Parts:</strong> {{ production.quantity_produced }}</p>
+        <p><strong>Rejected:</strong> {{ production.quantity_rejected }}</p>
+        <p><strong>Operator:</strong> {{ production.operator.username }}</p>
+    </div>
+    
+    <div style="background: #fff3cd; color: #856404; padding: 15px; border-radius: 10px; margin: 20px 0;">
+        <strong>⚠️ Note:</strong> Once approved, this production will be counted towards the order total.
+    </div>
+    
+    <form method="post">
+        {% csrf_token %}
+        <div style="display: flex; gap: 10px;">
+            <button type="submit" class="btn btn-success" style="flex: 1;">✅ Approve</button>
+            <a href="{% url 'shift_production_detail' production.pk %}" class="btn" style="flex: 1; text-align: center;">Cancel</a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

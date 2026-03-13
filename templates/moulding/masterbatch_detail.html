@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}{{ masterbatch.code }}{% endblock %}
+{% block content %}
+<h2>🎨 {{ masterbatch.code }} - {{ masterbatch.name }}</h2>
+<div style="margin:20px 0;"><a href="{% url 'masterbatch_list' %}" class="btn">← Back</a></div>
+<div class="card">
+    <h3>Masterbatch Details</h3>
+    {% if masterbatch.hex_color %}<p><strong>Color:</strong> <span style="display:inline-block;width:30px;height:30px;background:{{masterbatch.hex_color}};border:1px solid #ccc;border-radius:5px;vertical-align:middle;"></span> {{ masterbatch.color_name }}</p>{% endif %}
+    <p><strong>Type:</strong> {{ masterbatch.get_type_display }}</p>
+    <p><strong>Dosage:</strong> {{ masterbatch.recommended_dosage }}%</p>
+    <p><strong>Supplier:</strong> {{ masterbatch.supplier }}</p>
+    <p><strong>Stock:</strong> {{ masterbatch.current_stock }} kg</p>
+</div>
+{% endblock %}

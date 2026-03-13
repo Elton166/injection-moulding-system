@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Add Masterbatch{% endblock %}
+{% block content %}
+<h2>🎨 Add Masterbatch</h2>
+<div class="card">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div style="display:flex;gap:10px;margin-top:30px;">
+            <button type="submit" class="btn btn-success" style="flex:1;">💾 Save</button>
+            <a href="{% url 'masterbatch_list' %}" class="btn" style="flex:1;text-align:center;">Cancel</a>
+        </div>
+    </form>
+</div>
+<style>
+    input[type="text"], input[type="number"], input[type="color"], select, textarea {
+        width:100%;padding:10px;border:2px solid #e0e0e0;border-radius:8px;font-size:14px;
+    }
+    label {font-weight:600;margin-top:15px;display:block;}
+</style>
+{% endblock %}

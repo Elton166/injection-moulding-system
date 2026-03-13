@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Create Recipe{% endblock %}
+{% block content %}
+<h2>📋 Create Material Recipe</h2>
+<div class="card">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div style="display:flex;gap:10px;margin-top:30px;">
+            <button type="submit" class="btn btn-success" style="flex:1;">💾 Save Recipe</button>
+            <a href="{% url 'material_recipe_list' %}" class="btn" style="flex:1;text-align:center;">Cancel</a>
+        </div>
+    </form>
+</div>
+<style>
+    input, select, textarea {width:100%;padding:10px;border:2px solid #e0e0e0;border-radius:8px;font-size:14px;}
+    label {font-weight:600;margin-top:15px;display:block;}
+</style>
+{% endblock %}

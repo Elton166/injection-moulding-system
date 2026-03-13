@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}{{ recipe.recipe_code }}{% endblock %}
+{% block content %}
+<h2>📋 {{ recipe.recipe_code }} - {{ recipe.name }}</h2>
+<div style="margin:20px 0;"><a href="{% url 'material_recipe_list' %}" class="btn">← Back</a></div>
+<div class="card">
+    <h3>Recipe Details</h3>
+    <p><strong>Product:</strong> {{ recipe.product_name }}</p>
+    <h4 style="margin-top:20px;">Composition:</h4>
+    <p>Base Material: {{ recipe.base_material.code }} - {{ recipe.base_percentage }}%</p>
+    {% if recipe.masterbatch %}<p>Masterbatch: {{ recipe.masterbatch.code }} - {{ recipe.masterbatch_percentage }}%</p>{% endif %}
+    {% if recipe.regrind_material %}<p>Regrind: {{ recipe.regrind_material.code }} - {{ recipe.regrind_percentage }}%</p>{% endif %}
+    {% if recipe.total_weight_per_part %}<p><strong>Weight per Part:</strong> {{ recipe.total_weight_per_part }} g</p>{% endif %}
+</div>
+{% endblock %}

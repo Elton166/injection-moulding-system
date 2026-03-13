@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Masterbatches{% endblock %}
+{% block content %}
+<h2>🎨 Masterbatches</h2>
+<div style="margin: 20px 0;">
+    <a href="{% url 'masterbatch_create' %}" class="btn btn-success">➕ Add Masterbatch</a>
+    <a href="{% url 'material_dashboard' %}" class="btn">← Back</a>
+</div>
+{% if masterbatches %}
+<table>
+    <thead><tr><th>Code</th><th>Name</th><th>Color</th><th>Type</th><th>Dosage %</th><th>Stock</th><th>Actions</th></tr></thead>
+    <tbody>
+        {% for mb in masterbatches %}
+        <tr>
+            <td><strong>{{ mb.code }}</strong></td>
+            <td>{{ mb.name }}</td>
+            <td>{% if mb.hex_color %}<span style="display:inline-block;width:20px;height:20px;background:{{mb.hex_color}};border:1px solid #ccc;border-radius:3px;"></span>{% endif %} {{ mb.color_name }}</td>
+            <td>{{ mb.get_type_display }}</td>
+            <td>{{ mb.recommended_dosage }}%</td>
+            <td>{{ mb.current_stock }} kg</td>
+            <td><a href="{% url 'masterbatch_detail' mb.pk %}" class="btn" style="padding:5px 10px;font-size:12px;">View</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div class="card" style="text-align:center;padding:40px;"><p>No masterbatches yet</p></div>
+{% endif %}
+{% endblock %}
