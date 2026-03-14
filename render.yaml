@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: injection-moulding-system
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn injection_moulding.wsgi:application"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: DEBUG
+        value: False
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: injection-moulding-db
+          property: connectionString
+
+databases:
+  - name: injection-moulding-db
+    databaseName: injection_moulding
+    user: injection_moulding_user
