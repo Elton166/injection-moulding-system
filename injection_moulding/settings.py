@@ -20,6 +20,7 @@ ALLOWED_HOSTS = [
     '.onrender.com',  # For Render deployment
     '.railway.app',   # For Railway deployment
     '.pythonanywhere.com',  # For PythonAnywhere deployment
+    '*',  # Allow all hosts (remove this in production for security)
 ]
 
 INSTALLED_APPS = [
