@@ -1,0 +1,135 @@
+═══════════════════════════════════════════════════════════
+  PYTHONANYWHERE DEPLOYMENT - QUICK REFERENCE
+═══════════════════════════════════════════════════════════
+
+🌐 WEBSITE: https://www.pythonanywhere.com
+💰 COST: 100% FREE FOREVER
+⏱️ TIME: 30 minutes
+
+═══════════════════════════════════════════════════════════
+  STEP-BY-STEP COMMANDS
+═══════════════════════════════════════════════════════════
+
+1️⃣ CREATE ACCOUNT
+   → Go to pythonanywhere.com
+   → Click "Create a Beginner account"
+   → Choose a username (will be in your URL)
+
+2️⃣ OPEN BASH CONSOLE
+   → Dashboard → Consoles → Bash
+
+3️⃣ CLONE REPOSITORY
+   git clone https://github.com/Elton166/injection-moulding-system.git
+   cd injection-moulding-system
+
+4️⃣ CREATE VIRTUAL ENVIRONMENT
+   mkvirtualenv --python=/usr/bin/python3.10 myenv
+
+5️⃣ INSTALL DEPENDENCIES
+   pip install -r requirements.txt
+
+6️⃣ RUN MIGRATIONS
+   python manage.py migrate
+   python manage.py collectstatic --no-input
+   python setup_troubleshooting.py
+   python setup_issues.py
+
+7️⃣ CREATE WEB APP
+   → Web tab → Add a new web app
+   → Manual configuration → Python 3.10
+
+8️⃣ CONFIGURE PATHS (in Web tab)
+   Source code: /home/YOURUSERNAME/injection-moulding-system
+   Working directory: /home/YOURUSERNAME/injection-moulding-system
+   Virtualenv: /home/YOURUSERNAME/.virtualenvs/myenv
+
+9️⃣ EDIT WSGI FILE (click link in Web tab)
+   Delete everything and paste:
+
+───────────────────────────────────────────────────────────
+import os
+import sys
+
+path = '/home/YOURUSERNAME/injection-moulding-system'
+if path not in sys.path:
+    sys.path.insert(0, path)
+
+os.environ['DJANGO_SETTINGS_MODULE'] = 'injection_moulding.settings'
+os.environ['DEBUG'] = 'False'
+os.environ['SECRET_KEY'] = 't24#vuj5f^d9dcw$c*39gqg9$g(m3v=uc6*nr1u7p&=6)x795_'
+
+from django.core.wsgi import get_wsgi_application
+application = get_wsgi_application()
+───────────────────────────────────────────────────────────
+
+   ⚠️ REPLACE "YOURUSERNAME" WITH YOUR ACTUAL USERNAME!
+
+🔟 CONFIGURE STATIC FILES (in Web tab)
+   URL: /static/
+   Directory: /home/YOURUSERNAME/injection-moulding-system/static
+
+   URL: /media/
+   Directory: /home/YOURUSERNAME/injection-moulding-system/media
+
+1️⃣1️⃣ RELOAD WEB APP
+   → Web tab → Click green "Reload" button
+
+1️⃣2️⃣ VISIT YOUR APP! 🎉
+   https://YOURUSERNAME.pythonanywhere.com
+
+═══════════════════════════════════════════════════════════
+  IMPORTANT NOTES
+═══════════════════════════════════════════════════════════
+
+✅ Replace YOURUSERNAME with your actual PythonAnywhere username
+✅ Use Python 3.10 (not 3.11 or 3.9)
+✅ Make sure virtualenv path is correct
+✅ Check error logs if something doesn't work
+
+═══════════════════════════════════════════════════════════
+  TROUBLESHOOTING
+═══════════════════════════════════════════════════════════
+
+❌ Error: "ImportError: No module named django"
+   → Check virtualenv path in Web tab
+
+❌ Static files not loading
+   → Run: python manage.py collectstatic --no-input
+   → Reload web app
+
+❌ Database errors
+   → Run: python manage.py migrate
+   → Reload web app
+
+❌ View error logs
+   → Web tab → Log files → Error log
+
+═══════════════════════════════════════════════════════════
+  UPDATING YOUR APP
+═══════════════════════════════════════════════════════════
+
+When you make changes on GitHub:
+
+cd injection-moulding-system
+git pull origin master
+workon myenv
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py collectstatic --no-input
+
+Then reload web app in Web tab.
+
+═══════════════════════════════════════════════════════════
+  YOUR LIVE URL
+═══════════════════════════════════════════════════════════
+
+https://YOURUSERNAME.pythonanywhere.com
+
+(Replace YOURUSERNAME with your actual username)
+
+═══════════════════════════════════════════════════════════
+
+📖 Full Guide: See PYTHONANYWHERE_DEPLOYMENT.md
+🆘 Help: https://help.pythonanywhere.com
+
+Good luck! 🚀
