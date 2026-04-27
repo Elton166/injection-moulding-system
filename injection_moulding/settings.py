@@ -19,6 +19,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     '.onrender.com',  # For Render deployment
     '.railway.app',   # For Railway deployment
+    '.up.railway.app', # Railway production domains
     '.pythonanywhere.com',  # For PythonAnywhere deployment
     '*',  # Allow all hosts (remove this in production for security)
 ]
@@ -111,12 +112,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Security settings for production
 if not DEBUG:
-    SECURE_SSL_REDIRECT = True
+    # Only enable SSL redirect if not on Railway (Railway handles SSL at proxy level)
+    if not os.environ.get('RAILWAY_ENVIRONMENT'):
+        SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
     X_FRAME_OPTIONS = 'DENY'
-    SECURE_HSTS_SECONDS = 31536000
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-    SECURE_HSTS_PRELOAD = True
+    # Don't use HSTS on Railway
+    if not os.environ.get('RAILWAY_ENVIRONMENT'):
+        SECURE_HSTS_SECONDS = 31536000
+        SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+        SECURE_HSTS_PRELOAD = True
