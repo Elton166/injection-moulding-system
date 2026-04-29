@@ -65,85 +65,336 @@
     
     <div class="feature-card">
         <h4>1️⃣ Getting Started (5 minutes)</h4>
-        <div class="video-placeholder">
-            <p>🎥 Video: Company Registration & First Login</p>
-            <p style="font-size: 14px; margin-top: 10px;">Learn how to register your company and create employee accounts</p>
-        </div>
-        <div style="margin-top: 15px;">
-            <strong>What you'll learn:</strong>
-            <ul>
-                <li>How to register a company</li>
-                <li>Creating manager, supervisor, and operator accounts</li>
-                <li>Logging in and navigating the dashboard</li>
-            </ul>
+        <div style="background: #f8f9ff; padding: 20px; border-radius: 10px; border-left: 4px solid #667eea;">
+            <h5 style="color: #667eea;">📝 Step-by-Step Guide: Company Registration & First Login</h5>
+            
+            <div style="margin: 15px 0;">
+                <strong>Step 1: Register Your Company</strong>
+                <ol>
+                    <li>Open the app in your browser</li>
+                    <li>Click the <strong>"Register Company"</strong> button</li>
+                    <li>Fill in:
+                        <ul>
+                            <li>Company Name (e.g., "ABC Manufacturing")</li>
+                            <li>Email (e.g., "info@abcmfg.com")</li>
+                            <li>Phone Number</li>
+                            <li>Address</li>
+                            <li>Username (for login)</li>
+                            <li>Password (secure password)</li>
+                        </ul>
+                    </li>
+                    <li>Click <strong>"Register"</strong></li>
+                    <li>✅ You're now logged in as the company!</li>
+                </ol>
+            </div>
+            
+            <div style="margin: 15px 0;">
+                <strong>Step 2: Create Employee Accounts</strong>
+                <ol>
+                    <li>From your company dashboard, click <strong>"Register Employee"</strong></li>
+                    <li>Select role: <strong>Manager</strong>, <strong>Supervisor</strong>, or <strong>Operator</strong></li>
+                    <li>Fill in employee details (name, email, username, password)</li>
+                    <li>Click <strong>"Register"</strong></li>
+                    <li>✅ Employee can now login with their credentials!</li>
+                </ol>
+            </div>
+            
+            <div style="margin: 15px 0;">
+                <strong>Step 3: Navigate the Dashboard</strong>
+                <ul>
+                    <li><strong>Active Moulds:</strong> Shows how many moulds are running</li>
+                    <li><strong>Pending Orders:</strong> Orders waiting to be produced</li>
+                    <li><strong>Open Issues:</strong> Problems that need attention</li>
+                    <li><strong>Housekeeping:</strong> Cleaning tasks status</li>
+                    <li><strong>Quick Actions:</strong> Buttons for common tasks</li>
+                </ul>
+            </div>
+            
+            <a href="{% url 'company_register' %}" class="btn" style="margin-top: 10px;">Try It Now: Register Company</a>
         </div>
     </div>
     
     <div class="feature-card">
         <h4>2️⃣ Production Management (8 minutes)</h4>
-        <div class="video-placeholder">
-            <p>🎥 Video: Managing Production Orders & Mould Runs</p>
-            <p style="font-size: 14px; margin-top: 10px;">Master production tracking from order to completion</p>
-        </div>
-        <div style="margin-top: 15px;">
-            <strong>What you'll learn:</strong>
-            <ul>
-                <li>Creating production orders</li>
-                <li>Starting and stopping mould runs</li>
-                <li>Recording shift production</li>
-                <li>Tracking order progress</li>
-            </ul>
+        <div style="background: #f8f9ff; padding: 20px; border-radius: 10px; border-left: 4px solid #667eea;">
+            <h5 style="color: #667eea;">📝 Complete Production Workflow</h5>
+            
+            <div style="margin: 15px 0;">
+                <strong>Part A: Create a Production Order</strong>
+                <ol>
+                    <li>Click <strong>"Production Orders"</strong> in menu</li>
+                    <li>Click <strong>"Create New Order"</strong></li>
+                    <li>Fill in order details:
+                        <ul>
+                            <li>Product Name (e.g., "Plastic Container")</li>
+                            <li>Customer Name (e.g., "XYZ Corp")</li>
+                            <li>Quantity (e.g., 10000)</li>
+                            <li>Unit (e.g., "pieces")</li>
+                            <li>Priority: Urgent/High/Normal/Low</li>
+                            <li>Due Date</li>
+                            <li>Select Mould</li>
+                            <li>Select Material Recipe (optional - for auto-calculation)</li>
+                        </ul>
+                    </li>
+                    <li>Click <strong>"Create Order"</strong></li>
+                    <li>✅ Order appears in dashboard with priority badge!</li>
+                </ol>
+            </div>
+            
+            <div style="margin: 15px 0;">
+                <strong>Part B: Start a Mould Run</strong>
+                <ol>
+                    <li>From dashboard, click <strong>"Start New Run"</strong></li>
+                    <li>Select the mould you're using</li>
+                    <li>Enter machine number</li>
+                    <li>Enter setter name</li>
+                    <li>Set start time and setter completion time</li>
+                    <li>Add notes (optional)</li>
+                    <li>Click <strong>"Start Run"</strong></li>
+                    <li>✅ Run appears on dashboard with live duration timer!</li>
+                </ol>
+            </div>
+            
+            <div style="margin: 15px 0;">
+                <strong>Part C: Record Shift Production</strong>
+                <ol>
+                    <li>Click <strong>"Shift Production"</strong> in menu</li>
+                    <li>Click <strong>"Record Production"</strong></li>
+                    <li>Select the production order</li>
+                    <li>Select shift (Morning/Afternoon/Night)</li>
+                    <li>Enter shift date and times</li>
+                    <li>Enter quantities:
+                        <ul>
+                            <li>Quantity Produced (good parts)</li>
+                            <li>Quantity Rejected (scrap)</li>
+                        </ul>
+                    </li>
+                    <li>App automatically calculates:
+                        <ul>
+                            <li>Scrap Rate %</li>
+                            <li>Production Rate (parts/hour)</li>
+                            <li>Efficiency %</li>
+                        </ul>
+                    </li>
+                    <li>Click <strong>"Record"</strong></li>
+                    <li>✅ Supervisor can now approve the production!</li>
+                </ol>
+            </div>
+            
+            <div style="margin: 15px 0;">
+                <strong>Part D: Stop Mould Run</strong>
+                <ol>
+                    <li>Go to dashboard</li>
+                    <li>Find the active run</li>
+                    <li>Click <strong>"Stop Run"</strong> button</li>
+                    <li>✅ Run is marked complete with total duration!</li>
+                </ol>
+            </div>
+            
+            <a href="{% url 'production_order_create' %}" class="btn btn-success" style="margin-top: 10px;">Try It Now: Create Order</a>
         </div>
     </div>
     
     <div class="feature-card">
         <h4>3️⃣ Material Management (6 minutes)</h4>
-        <div class="video-placeholder">
-            <p>🎥 Video: Managing Materials & Masterbatches</p>
-            <p style="font-size: 14px; margin-top: 10px;">Track inventory and manage material recipes</p>
-        </div>
-        <div style="margin-top: 15px;">
-            <strong>What you'll learn:</strong>
-            <ul>
-                <li>Adding material types (virgin, regrind, mixed)</li>
-                <li>Creating masterbatch colors</li>
-                <li>Setting up material recipes</li>
-                <li>Automatic material calculations</li>
-            </ul>
+        <div style="background: #f8f9ff; padding: 20px; border-radius: 10px; border-left: 4px solid #667eea;">
+            <h5 style="color: #667eea;">📝 Complete Material Setup Guide</h5>
+            
+            <div style="margin: 15px 0;">
+                <strong>Part A: Add Material Types</strong>
+                <ol>
+                    <li>Click <strong>"Materials"</strong> in menu</li>
+                    <li>Click <strong>"Material Types"</strong></li>
+                    <li>Click <strong>"Add Material Type"</strong></li>
+                    <li>Fill in:
+                        <ul>
+                            <li>Material Code (e.g., "PP-V001")</li>
+                            <li>Name (e.g., "Polypropylene Virgin")</li>
+                            <li>Category: Virgin/Regrind/Mixed</li>
+                            <li>Supplier</li>
+                            <li>Current Stock (kg)</li>
+                            <li>Minimum Stock (for alerts)</li>
+                            <li>Cost per kg</li>
+                        </ul>
+                    </li>
+                    <li>Click <strong>"Save"</strong></li>
+                    <li>✅ Material added! Low stock alerts will show if stock is low</li>
+                </ol>
+            </div>
+            
+            <div style="margin: 15px 0;">
+                <strong>Part B: Add Masterbatch Colors</strong>
+                <ol>
+                    <li>From Materials menu, click <strong>"Masterbatch"</strong></li>
+                    <li>Click <strong>"Add Masterbatch"</strong></li>
+                    <li>Fill in:
+                        <ul>
+                            <li>Code (e.g., "MB-RED-001")</li>
+                            <li>Name (e.g., "Red Masterbatch")</li>
+                            <li>Type: Color or Additive</li>
+                            <li>Color Hex Code (e.g., #FF0000 for red)</li>
+                            <li>Supplier</li>
+                            <li>Current Stock</li>
+                            <li>Minimum Stock</li>
+                        </ul>
+                    </li>
+                    <li>Click <strong>"Save"</strong></li>
+                    <li>✅ Color appears with visual color swatch!</li>
+                </ol>
+            </div>
+            
+            <div style="margin: 15px 0;">
+                <strong>Part C: Create Material Recipe</strong>
+                <ol>
+                    <li>Click <strong>"Material Recipes"</strong></li>
+                    <li>Click <strong>"Create Recipe"</strong></li>
+                    <li>Fill in:
+                        <ul>
+                            <li>Recipe Code (e.g., "RCP-001")</li>
+                            <li>Recipe Name (e.g., "Red Container Mix")</li>
+                            <li>Select Base Material</li>
+                            <li>Base Material % (e.g., 85%)</li>
+                            <li>Select Masterbatch</li>
+                            <li>Masterbatch % (e.g., 5%)</li>
+                            <li>Regrind % (e.g., 10%)</li>
+                        </ul>
+                    </li>
+                    <li>Click <strong>"Save"</strong></li>
+                    <li>✅ Recipe ready! Use it in production orders for auto-calculation</li>
+                </ol>
+            </div>
+            
+            <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                <strong>💡 Pro Tip:</strong> When you create a production order and select a material recipe, the app automatically calculates how much of each material you need (including 5% waste factor)!
+            </div>
+            
+            <a href="{% url 'material_dashboard' %}" class="btn btn-warning" style="margin-top: 10px;">Try It Now: Manage Materials</a>
         </div>
     </div>
     
     <div class="feature-card">
         <h4>4️⃣ Quality Control (7 minutes)</h4>
-        <div class="video-placeholder">
-            <p>🎥 Video: Quality Checks & Issue Tracking</p>
-            <p style="font-size: 14px; margin-top: 10px;">Maintain quality standards and resolve issues</p>
-        </div>
-        <div style="margin-top: 15px;">
-            <strong>What you'll learn:</strong>
-            <ul>
-                <li>Submitting hourly checklists</li>
-                <li>Reporting issues and complaints</li>
-                <li>Creating maintenance job cards</li>
-                <li>Using the troubleshooting database</li>
-            </ul>
+        <div style="background: #f8f9ff; padding: 20px; border-radius: 10px; border-left: 4px solid #667eea;">
+            <h5 style="color: #667eea;">📝 Quality Management Workflow</h5>
+            
+            <div style="margin: 15px 0;">
+                <strong>Part A: Submit Hourly Checklist</strong>
+                <ol>
+                    <li>Click <strong>"Checklists"</strong> in menu</li>
+                    <li>Click <strong>"Submit Checklist"</strong></li>
+                    <li>Fill in:
+                        <ul>
+                            <li>Machine Number</li>
+                            <li>Mould being used</li>
+                            <li>Temperature readings</li>
+                            <li>Pressure readings</li>
+                            <li>Cycle time</li>
+                            <li>Check "Issues Found" if problems detected</li>
+                            <li>Describe any issues</li>
+                        </ul>
+                    </li>
+                    <li>Click <strong>"Submit"</strong></li>
+                    <li>✅ Checklist saved! Appears on dashboard</li>
+                </ol>
+            </div>
+            
+            <div style="margin: 15px 0;">
+                <strong>Part B: Report an Issue</strong>
+                <ol>
+                    <li>Click <strong>"Issues"</strong> in menu</li>
+                    <li>Click <strong>"Report Issue"</strong></li>
+                    <li>Select category:
+                        <ul>
+                            <li>Customer Complaint</li>
+                            <li>Mould Issue</li>
+                            <li>Product Defect</li>
+                            <li>Machine Issue</li>
+                            <li>Maintenance</li>
+                        </ul>
+                    </li>
+                    <li>Fill in:
+                        <ul>
+                            <li>Title (brief description)</li>
+                            <li>Detailed description</li>
+                            <li>Priority: Critical/High/Medium/Low</li>
+                            <li>Related mould/machine/customer</li>
+                        </ul>
+                    </li>
+                    <li>Click <strong>"Report"</strong></li>
+                    <li>✅ Issue created with tracking number!</li>
+                </ol>
+            </div>
+            
+            <div style="margin: 15px 0;">
+                <strong>Part C: Use Troubleshooting Database</strong>
+                <ol>
+                    <li>Click <strong>"Troubleshooting"</strong> in menu</li>
+                    <li>Browse 17 common issues:
+                        <ul>
+                            <li>Short Shots</li>
+                            <li>Flash</li>
+                            <li>Sink Marks</li>
+                            <li>Warpage</li>
+                            <li>And more...</li>
+                        </ul>
+                    </li>
+                    <li>Click on an issue to see:
+                        <ul>
+                            <li>Symptoms</li>
+                            <li>10-step solution</li>
+                            <li>Machine parameter adjustments</li>
+                            <li>Prevention tips</li>
+                        </ul>
+                    </li>
+                    <li>✅ Follow the steps to fix the problem!</li>
+                </ol>
+            </div>
+            
+            <a href="{% url 'issue_create' %}" class="btn btn-danger" style="margin-top: 10px;">Try It Now: Report Issue</a>
         </div>
     </div>
     
     <div class="feature-card">
         <h4>5️⃣ Housekeeping (4 minutes)</h4>
-        <div class="video-placeholder">
-            <p>🎥 Video: Housekeeping Tasks & Documentation</p>
-            <p style="font-size: 14px; margin-top: 10px;">Keep your facility clean and documented</p>
-        </div>
-        <div style="margin-top: 15px;">
-            <strong>What you'll learn:</strong>
-            <ul>
-                <li>Creating housekeeping tasks</li>
-                <li>Taking before/after pictures</li>
-                <li>Recording cleaning products used</li>
-                <li>Completing tasks</li>
-            </ul>
+        <div style="background: #f8f9ff; padding: 20px; border-radius: 10px; border-left: 4px solid #667eea;">
+            <h5 style="color: #667eea;">📝 Housekeeping Task Workflow</h5>
+            
+            <div style="margin: 15px 0;">
+                <strong>Complete Housekeeping Process:</strong>
+                <ol>
+                    <li>Click <strong>"Housekeeping"</strong> in menu</li>
+                    <li>Click <strong>"Start Task"</strong></li>
+                    <li>Fill in:
+                        <ul>
+                            <li>Task description</li>
+                            <li>Area type: Machine/Mould/Factory Floor/Storage/Workstation</li>
+                            <li>Specific area (e.g., "Machine 5")</li>
+                        </ul>
+                    </li>
+                    <li><strong>Take "Before" Picture:</strong> Upload photo of area before cleaning</li>
+                    <li>Click <strong>"Start Task"</strong></li>
+                    <li>✅ Task created and marked "In Progress"</li>
+                    <li><strong>Perform the cleaning</strong></li>
+                    <li>Click on the task to complete it</li>
+                    <li>Click <strong>"Complete Task"</strong></li>
+                    <li>Fill in:
+                        <ul>
+                            <li><strong>Take "After" Picture:</strong> Upload photo after cleaning</li>
+                            <li>Cleaning products used</li>
+                            <li>Any issues found during cleaning</li>
+                            <li>Completion notes</li>
+                        </ul>
+                    </li>
+                    <li>Click <strong>"Complete"</strong></li>
+                    <li>✅ Task marked complete with before/after photos!</li>
+                </ol>
+            </div>
+            
+            <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                <strong>💡 Pro Tip:</strong> Before/after pictures provide visual proof of cleaning and help maintain standards!
+            </div>
+            
+            <a href="{% url 'housekeeping_create' %}" class="btn btn-success" style="margin-top: 10px;">Try It Now: Start Housekeeping</a>
         </div>
     </div>
 </div>
