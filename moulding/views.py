@@ -897,3 +897,8 @@ def order_production_summary(request, order_pk):
         'pending_approval': shift_productions.filter(approved=False).count(),
     }
     return render(request, 'moulding/order_production_summary.html', context)
+
+
+def tutorial(request):
+    """Tutorial page with video guides and documentation"""
+    return render(request, 'moulding/tutorial.html')

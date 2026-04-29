@@ -1,0 +1,386 @@
+{% extends 'base.html' %}
+
+{% block title %}App Tutorial - Injection Moulding System{% endblock %}
+
+{% block content %}
+<style>
+    .tutorial-section {
+        margin: 30px 0;
+        padding: 25px;
+        background: linear-gradient(135deg, #f8f9ff 0%, #fff 100%);
+        border-radius: 15px;
+        border-left: 5px solid #667eea;
+    }
+    
+    .tutorial-video {
+        background: #000;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+        margin: 20px 0;
+    }
+    
+    .feature-card {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        margin: 15px 0;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s;
+    }
+    
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    
+    .step-number {
+        display: inline-block;
+        width: 35px;
+        height: 35px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 35px;
+        font-weight: bold;
+        margin-right: 10px;
+    }
+    
+    .video-placeholder {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 60px 20px;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 18px;
+    }
+</style>
+
+<h2>📚 Complete App Tutorial</h2>
+
+<div class="tutorial-section">
+    <h3>🎬 Video Tutorials</h3>
+    <p>Watch these step-by-step video guides to master the app:</p>
+    
+    <div class="feature-card">
+        <h4>1️⃣ Getting Started (5 minutes)</h4>
+        <div class="video-placeholder">
+            <p>🎥 Video: Company Registration & First Login</p>
+            <p style="font-size: 14px; margin-top: 10px;">Learn how to register your company and create employee accounts</p>
+        </div>
+        <div style="margin-top: 15px;">
+            <strong>What you'll learn:</strong>
+            <ul>
+                <li>How to register a company</li>
+                <li>Creating manager, supervisor, and operator accounts</li>
+                <li>Logging in and navigating the dashboard</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="feature-card">
+        <h4>2️⃣ Production Management (8 minutes)</h4>
+        <div class="video-placeholder">
+            <p>🎥 Video: Managing Production Orders & Mould Runs</p>
+            <p style="font-size: 14px; margin-top: 10px;">Master production tracking from order to completion</p>
+        </div>
+        <div style="margin-top: 15px;">
+            <strong>What you'll learn:</strong>
+            <ul>
+                <li>Creating production orders</li>
+                <li>Starting and stopping mould runs</li>
+                <li>Recording shift production</li>
+                <li>Tracking order progress</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="feature-card">
+        <h4>3️⃣ Material Management (6 minutes)</h4>
+        <div class="video-placeholder">
+            <p>🎥 Video: Managing Materials & Masterbatches</p>
+            <p style="font-size: 14px; margin-top: 10px;">Track inventory and manage material recipes</p>
+        </div>
+        <div style="margin-top: 15px;">
+            <strong>What you'll learn:</strong>
+            <ul>
+                <li>Adding material types (virgin, regrind, mixed)</li>
+                <li>Creating masterbatch colors</li>
+                <li>Setting up material recipes</li>
+                <li>Automatic material calculations</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="feature-card">
+        <h4>4️⃣ Quality Control (7 minutes)</h4>
+        <div class="video-placeholder">
+            <p>🎥 Video: Quality Checks & Issue Tracking</p>
+            <p style="font-size: 14px; margin-top: 10px;">Maintain quality standards and resolve issues</p>
+        </div>
+        <div style="margin-top: 15px;">
+            <strong>What you'll learn:</strong>
+            <ul>
+                <li>Submitting hourly checklists</li>
+                <li>Reporting issues and complaints</li>
+                <li>Creating maintenance job cards</li>
+                <li>Using the troubleshooting database</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="feature-card">
+        <h4>5️⃣ Housekeeping (4 minutes)</h4>
+        <div class="video-placeholder">
+            <p>🎥 Video: Housekeeping Tasks & Documentation</p>
+            <p style="font-size: 14px; margin-top: 10px;">Keep your facility clean and documented</p>
+        </div>
+        <div style="margin-top: 15px;">
+            <strong>What you'll learn:</strong>
+            <ul>
+                <li>Creating housekeeping tasks</li>
+                <li>Taking before/after pictures</li>
+                <li>Recording cleaning products used</li>
+                <li>Completing tasks</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="tutorial-section">
+    <h3>📖 Quick Start Guide</h3>
+    
+    <h4 style="color: #667eea; margin-top: 30px;">Step 1: Register Your Company</h4>
+    <div class="feature-card">
+        <p><span class="step-number">1</span> Click "Register Company" on the home page</p>
+        <p><span class="step-number">2</span> Fill in company details (name, email, phone, address)</p>
+        <p><span class="step-number">3</span> Create username and password</p>
+        <p><span class="step-number">4</span> Click "Register" - you're now logged in!</p>
+    </div>
+    
+    <h4 style="color: #667eea; margin-top: 30px;">Step 2: Create Employee Accounts</h4>
+    <div class="feature-card">
+        <p><span class="step-number">1</span> From company dashboard, click "Register Employee"</p>
+        <p><span class="step-number">2</span> Choose role: Manager, Supervisor, or Operator</p>
+        <p><span class="step-number">3</span> Fill in employee details</p>
+        <p><span class="step-number">4</span> Employees can now login with their credentials</p>
+    </div>
+    
+    <h4 style="color: #667eea; margin-top: 30px;">Step 3: Set Up Materials</h4>
+    <div class="feature-card">
+        <p><span class="step-number">1</span> Go to "Materials" in the menu</p>
+        <p><span class="step-number">2</span> Add material types (virgin, regrind, mixed)</p>
+        <p><span class="step-number">3</span> Add masterbatch colors with codes</p>
+        <p><span class="step-number">4</span> Create material recipes for standard formulations</p>
+    </div>
+    
+    <h4 style="color: #667eea; margin-top: 30px;">Step 4: Create Production Order</h4>
+    <div class="feature-card">
+        <p><span class="step-number">1</span> Go to "Production Orders"</p>
+        <p><span class="step-number">2</span> Click "Create New Order"</p>
+        <p><span class="step-number">3</span> Fill in product, customer, quantity, due date</p>
+        <p><span class="step-number">4</span> Select material recipe - app calculates requirements!</p>
+        <p><span class="step-number">5</span> Set priority and save</p>
+    </div>
+    
+    <h4 style="color: #667eea; margin-top: 30px;">Step 5: Start Production</h4>
+    <div class="feature-card">
+        <p><span class="step-number">1</span> From dashboard, click "Start New Run"</p>
+        <p><span class="step-number">2</span> Select mould and machine</p>
+        <p><span class="step-number">3</span> Enter setter information</p>
+        <p><span class="step-number">4</span> Run appears on dashboard - track duration</p>
+        <p><span class="step-number">5</span> Click "Stop Run" when finished</p>
+    </div>
+    
+    <h4 style="color: #667eea; margin-top: 30px;">Step 6: Record Shift Production</h4>
+    <div class="feature-card">
+        <p><span class="step-number">1</span> Go to "Shift Production"</p>
+        <p><span class="step-number">2</span> Click "Record Production"</p>
+        <p><span class="step-number">3</span> Select order, shift, and enter quantities</p>
+        <p><span class="step-number">4</span> App calculates scrap rate and efficiency</p>
+        <p><span class="step-number">5</span> Supervisor approves - updates order total</p>
+    </div>
+</div>
+
+<div class="tutorial-section">
+    <h3>🎯 Feature Guides</h3>
+    
+    <div class="feature-card">
+        <h4>📊 Dashboard</h4>
+        <p><strong>Purpose:</strong> Central hub showing all key metrics</p>
+        <p><strong>What you see:</strong></p>
+        <ul>
+            <li>Active moulds count</li>
+            <li>Pending orders with priorities</li>
+            <li>Open issues with urgency levels</li>
+            <li>Housekeeping status</li>
+            <li>Active mould runs with duration</li>
+            <li>Quick action buttons</li>
+        </ul>
+    </div>
+    
+    <div class="feature-card">
+        <h4>🏭 Mould Runs</h4>
+        <p><strong>Purpose:</strong> Track which moulds are currently running</p>
+        <p><strong>How to use:</strong></p>
+        <ul>
+            <li>Click "Start New Run" from dashboard</li>
+            <li>Select mould and machine number</li>
+            <li>Enter setter name and times</li>
+            <li>App tracks duration automatically</li>
+            <li>Stop run when complete</li>
+        </ul>
+    </div>
+    
+    <div class="feature-card">
+        <h4>📦 Production Orders</h4>
+        <p><strong>Purpose:</strong> Manage customer orders from start to finish</p>
+        <p><strong>Features:</strong></p>
+        <ul>
+            <li>Priority levels (Urgent, High, Normal, Low)</li>
+            <li>Due date tracking with overdue warnings</li>
+            <li>Automatic material calculations</li>
+            <li>Status tracking (Pending, In Progress, Completed)</li>
+            <li>Shift production summary</li>
+        </ul>
+    </div>
+    
+    <div class="feature-card">
+        <h4>🎨 Material Management</h4>
+        <p><strong>Purpose:</strong> Track inventory and formulations</p>
+        <p><strong>Components:</strong></p>
+        <ul>
+            <li><strong>Material Types:</strong> Virgin, regrind, mixed materials</li>
+            <li><strong>Masterbatches:</strong> Colors and additives with codes</li>
+            <li><strong>Recipes:</strong> Standard formulations for products</li>
+            <li><strong>Stock Tracking:</strong> Current stock with low stock alerts</li>
+        </ul>
+    </div>
+    
+    <div class="feature-card">
+        <h4>⚠️ Issue Tracking</h4>
+        <p><strong>Purpose:</strong> Log and resolve problems</p>
+        <p><strong>Issue Types:</strong></p>
+        <ul>
+            <li>Customer complaints</li>
+            <li>Mould issues</li>
+            <li>Product defects</li>
+            <li>Machine problems</li>
+            <li>Maintenance needs</li>
+        </ul>
+        <p><strong>Features:</strong> Priority levels, time tracking, comments, job cards</p>
+    </div>
+    
+    <div class="feature-card">
+        <h4>🔧 Troubleshooting Database</h4>
+        <p><strong>Purpose:</strong> Quick reference for common problems</p>
+        <p><strong>Includes:</strong></p>
+        <ul>
+            <li>17 detailed troubleshooting guides</li>
+            <li>10 common defect types</li>
+            <li>Step-by-step solutions</li>
+            <li>Machine parameter adjustments</li>
+            <li>Prevention strategies</li>
+        </ul>
+    </div>
+    
+    <div class="feature-card">
+        <h4>✅ Hourly Checklists</h4>
+        <p><strong>Purpose:</strong> Regular quality checks</p>
+        <p><strong>How to use:</strong></p>
+        <ul>
+            <li>Submit every hour during production</li>
+            <li>Check temperature, pressure, cycle time</li>
+            <li>Note any issues found</li>
+            <li>Helps catch problems early</li>
+        </ul>
+    </div>
+    
+    <div class="feature-card">
+        <h4>🧹 Housekeeping</h4>
+        <p><strong>Purpose:</strong> Maintain clean, safe facility</p>
+        <p><strong>Process:</strong></p>
+        <ul>
+            <li>Create task with area type</li>
+            <li>Take "before" picture</li>
+            <li>Perform cleaning</li>
+            <li>Take "after" picture</li>
+            <li>Record products used and issues found</li>
+        </ul>
+    </div>
+</div>
+
+<div class="tutorial-section">
+    <h3>💡 Tips & Best Practices</h3>
+    
+    <div class="feature-card">
+        <h4>🎯 For Managers</h4>
+        <ul>
+            <li>Review dashboard daily for overview</li>
+            <li>Monitor urgent orders and critical issues</li>
+            <li>Check shift production approvals</li>
+            <li>Review material stock levels weekly</li>
+            <li>Use troubleshooting database for training</li>
+        </ul>
+    </div>
+    
+    <div class="feature-card">
+        <h4>👷 For Supervisors</h4>
+        <ul>
+            <li>Approve shift productions promptly</li>
+            <li>Monitor active mould runs</li>
+            <li>Review and assign issues</li>
+            <li>Check hourly checklists for problems</li>
+            <li>Verify housekeeping completion</li>
+        </ul>
+    </div>
+    
+    <div class="feature-card">
+        <h4>⚙️ For Operators</h4>
+        <ul>
+            <li>Submit hourly checklists on time</li>
+            <li>Record shift production accurately</li>
+            <li>Report issues immediately</li>
+            <li>Complete housekeeping tasks</li>
+            <li>Use troubleshooting guide when needed</li>
+        </ul>
+    </div>
+</div>
+
+<div class="tutorial-section">
+    <h3>❓ Frequently Asked Questions</h3>
+    
+    <div class="feature-card">
+        <h4>Q: How do I reset my password?</h4>
+        <p>A: Contact your company administrator to reset your password.</p>
+    </div>
+    
+    <div class="feature-card">
+        <h4>Q: Can I edit a production order after creating it?</h4>
+        <p>A: Yes, go to Production Orders, click on the order, and use the edit option.</p>
+    </div>
+    
+    <div class="feature-card">
+        <h4>Q: What happens if I forget to stop a mould run?</h4>
+        <p>A: You can stop it anytime from the dashboard. The duration will be calculated from start to stop time.</p>
+    </div>
+    
+    <div class="feature-card">
+        <h4>Q: How do I know if materials are running low?</h4>
+        <p>A: The Material Dashboard shows low stock alerts when stock falls below minimum levels.</p>
+    </div>
+    
+    <div class="feature-card">
+        <h4>Q: Can I access the app on my phone?</h4>
+        <p>A: Yes! The app is fully responsive and works on phones, tablets, and computers.</p>
+    </div>
+</div>
+
+<div style="text-align: center; margin: 40px 0;">
+    <a href="{% url 'dashboard' %}" class="btn btn-success" style="font-size: 18px; padding: 15px 40px;">
+        🚀 Start Using the App
+    </a>
+</div>
+
+{% endblock %}

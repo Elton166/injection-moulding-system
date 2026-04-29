@@ -89,6 +89,9 @@ urlpatterns = [
     # Troubleshooting Chart
     path('troubleshooting/chart/', views.troubleshooting_chart, name='troubleshooting_chart'),
     
+    # Tutorial
+    path('tutorial/', views.tutorial, name='tutorial'),
+    
     # Authentication URLs
     # keep auth routes, but give the auth root login a different name to avoid
     # duplicating the root `login_home` name
