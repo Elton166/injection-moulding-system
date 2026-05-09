@@ -5,7 +5,10 @@
             var root = document.documentElement;
             if (!nav || !root) return;
             var navHeight = nav.offsetHeight || 0;
-            root.style.setProperty('--container-top-offset', (navHeight + 10) + 'px');
+            var navStyles = window.getComputedStyle(nav);
+            var navMarginBottom = parseFloat(navStyles.marginBottom) || 0;
+            var totalOffset = navHeight + navMarginBottom + 10;
+            root.style.setProperty('--container-top-offset', totalOffset + 'px');
         } catch (err) {
             console && console.warn && console.warn('adjustContainerOffset error', err);
         }

@@ -460,40 +460,6 @@
         </div>
     </header>
     
-    <nav>
-        <div class="container">
-            <ul>
-                {% if request.session.company_id or request.session.user_id %}
-                <!-- Show full menu when logged in -->
-                <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
-                <li><a href="{% url 'material_dashboard' %}">Materials</a></li>
-                <li><a href="{% url 'production_order_list' %}">Production Orders</a></li>
-                <li><a href="{% url 'shift_production_list' %}">Shift Production</a></li>
-                <li><a href="{% url 'issue_list' %}">Issues</a></li>
-                <li><a href="{% url 'housekeeping_list' %}">Housekeeping</a></li>
-                <li><a href="{% url 'job_card_list' %}">Job Cards</a></li>
-                <li><a href="{% url 'mould_run_list' %}">Mould Runs</a></li>
-                <li><a href="{% url 'mould_change_list' %}">Mould Changes</a></li>
-                <li><a href="{% url 'troubleshooting_list' %}">Troubleshooting</a></li>
-                <li><a href="{% url 'checklist_list' %}">Checklists</a></li>
-                <li><a href="{% url 'master_sample_list' %}">Master Samples</a></li>
-                <li><a href="{% url 'comparison_list' %}">Comparisons</a></li>
-                <li><a href="{% url 'defect_types_list' %}">Defect Types</a></li>
-                <li><a href="{% url 'tutorial' %}" style="color: #11998e;">📚 Tutorial</a></li>
-                <li><a href="{% url 'logout' %}" style="color: #f45c43;">Logout</a></li>
-                {% else %}
-                <!-- Show limited menu when not logged in -->
-                <li><a href="{% url 'dashboard' %}">Home</a></li>
-                <li><a href="{% url 'login_home' %}">Login</a></li>
-                <li><a href="{% url 'company_register' %}">Register Company</a></li>
-                {% endif %}
-                {% if user.is_authenticated %}
-                <li><a href="/admin/">Admin</a></li>
-                {% endif %}
-            </ul>
-        </div>
-    </nav>
-    
     <div class="container">
         {% if messages %}
         <div class="messages">
@@ -530,11 +496,6 @@
             // Show install button or banner
             console.log('PWA install prompt available');
         });
-
-        // adjust container offset via external script
-        // (see static/js/adjust-container.js)
-    </script>
-    <script src="{% static 'js/adjust-container.js' %}"></script>
     </script>
 </body>
 </html>
