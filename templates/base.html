@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,6 +18,7 @@
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
     <link rel="icon" type="image/png" sizes="192x192" href="/static/icon-192.png">
     <link rel="apple-touch-icon" href="/static/icon-192.png">
+    <link rel="stylesheet" href="{% static 'css/site.css' %}">
     
     <title>{% block title %}Injection Moulding System{% endblock %}</title>
     <style>
@@ -529,23 +531,10 @@
             console.log('PWA install prompt available');
         });
 
-        // Ensure sticky nav does not overlap page content by applying a top
-        // offset equal to the nav height. Runs on load and resize.
-        function adjustContainerOffset() {
-            try {
-                const nav = document.querySelector('nav');
-                const root = document.documentElement;
-                if (!nav || !root) return;
-                const navHeight = nav.offsetHeight || 0;
-                // add small extra gap (10px)
-                root.style.setProperty('--container-top-offset', (navHeight + 10) + 'px');
-            } catch (err) {
-                console.warn('adjustContainerOffset error', err);
-            }
-        }
-
-        window.addEventListener('load', adjustContainerOffset);
-        window.addEventListener('resize', adjustContainerOffset);
+        // adjust container offset via external script
+        // (see static/js/adjust-container.js)
+    </script>
+    <script src="{% static 'js/adjust-container.js' %}"></script>
     </script>
 </body>
 </html>

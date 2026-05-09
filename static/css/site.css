@@ -1,0 +1,6 @@
+/* Site-wide CSS overrides */
+:root { --container-top-offset: 0px; }
+.container { padding-top: var(--container-top-offset); }
+
+/* Keep the JS-additional smooth transition */
+.container { transition: padding-top 240ms ease-in-out; }
