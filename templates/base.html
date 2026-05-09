@@ -53,6 +53,10 @@
         }
         
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+          /* container top offset will be set dynamically to avoid sticky nav
+              overlapping content. JS below sets --container-top-offset to nav height. */
+          :root { --container-top-offset: 0px; }
+          .container { padding-top: var(--container-top-offset); }
         
         header { 
             background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
@@ -524,6 +528,24 @@
             // Show install button or banner
             console.log('PWA install prompt available');
         });
+
+        // Ensure sticky nav does not overlap page content by applying a top
+        // offset equal to the nav height. Runs on load and resize.
+        function adjustContainerOffset() {
+            try {
+                const nav = document.querySelector('nav');
+                const root = document.documentElement;
+                if (!nav || !root) return;
+                const navHeight = nav.offsetHeight || 0;
+                // add small extra gap (10px)
+                root.style.setProperty('--container-top-offset', (navHeight + 10) + 'px');
+            } catch (err) {
+                console.warn('adjustContainerOffset error', err);
+            }
+        }
+
+        window.addEventListener('load', adjustContainerOffset);
+        window.addEventListener('resize', adjustContainerOffset);
     </script>
 </body>
 </html>
