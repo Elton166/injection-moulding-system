@@ -104,8 +104,7 @@
             margin-bottom: 20px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.2);
             border-radius: 15px;
-            position: sticky;
-            top: 10px;
+            position: relative;
             z-index: 100;
         }
         
@@ -114,6 +113,8 @@
             display: flex; 
             justify-content: center; 
             flex-wrap: wrap; 
+            max-height: none;
+            overflow: visible;
         }
         
         nav ul li { margin: 5px 10px; }
@@ -159,16 +160,21 @@
                 top: 0;
                 margin-bottom: 20px;
                 padding: 10px 0;
+                max-height: none;
+                overflow: visible;
             }
             
             nav ul {
                 flex-direction: column;
-                align-items: center;
+                align-items: stretch;
+                padding: 0 10px;
+                max-height: none;
+                overflow: visible;
             }
             
             nav ul li {
                 margin: 5px 0;
-                width: 90%;
+                width: 100%;
             }
             
             nav ul li a {
@@ -179,7 +185,7 @@
             }
             
             header h1 {
-                font-size: 24px;
+                font-size: 20px;
                 padding: 0 15px;
             }
             
@@ -189,6 +195,24 @@
             
             .content {
                 padding: 20px 15px;
+                margin-top: 10px;
+            }
+            
+            /* Ensure content is below navigation */
+            body {
+                padding-top: 0;
+            }
+        }
+        
+        /* Tablet responsive */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            nav ul li {
+                margin: 5px 5px;
+            }
+            
+            nav ul li a {
+                padding: 8px 15px;
+                font-size: 13px;
             }
         }
         
